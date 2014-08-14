@@ -1,0 +1,25 @@
+--- a/Makefile
++++ b/Makefile
+@@ -3,7 +3,7 @@
+ projection=3857
+ 
+ # dl url name proj encoding
+-define dl=
++define dl
+ 	test -f $2.zip||wget -O $2.zip $1
+ 	test -d $2||(mkdir $2 && cd $2 && unzip ../$2.zip)
+ 	$(eval proj_path=$2_$3_$4)
+@@ -11,7 +11,7 @@
+ 	/bin/bash reproj_and_encode.sh $2 $3 $4
+ endef
+ 
+-define ins=
++define ins
+ 	install $1/*.sh[px] $1/*.dbf $1/*.prj $(DESTDIR)$(shapepath)
+ endef
+ 
+@@ -36,3 +36,4 @@
+ clean:
+ 	rm -rf $(themes)
+ 	rm -rf *_$(projection)_$(encoding)
++	rm -f *.zip
